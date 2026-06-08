@@ -4,6 +4,7 @@
   "branch": "main",
   "evidence_stage": "E3_RECEIPTED",
   "sealed_at": "2026-06-07T00:00:00Z",
+  "last_updated": "2026-06-08T00:00:00-05:00",
   "declarant": {
     "name": "Ryan",
     "handle": "@TheraPantis",
@@ -45,6 +46,11 @@
       "path": "ARTIFACT_INDEX_COMPREHENSIVE.md",
       "purpose": "Human-readable artifact-corpus index",
       "status": "active"
+    },
+    {
+      "path": "KEEP_LIST.md",
+      "purpose": "Consolidated preservation map from the current chat thread, including web handoffs, visual references, STATUS templates, code candidates, text assets, and integration notes",
+      "status": "active"
     }
   ],
   "artifact_corpus": {
@@ -62,6 +68,37 @@
       "Satellite Projects"
     ]
   },
+  "current_chat_keep_list": {
+    "web_handoffs": [
+      "Cathedral Preservation Topology v1.0 — Final Professional Handoff",
+      "Intelligence ≠ Authority: A Governance Architecture for Post-Human Cognition"
+    ],
+    "visuals": [
+      "WEAVER-LUMEN v9.0 governance visual"
+    ],
+    "status_templates": [
+      "STATUS_00_AUTHORITY_AND_REGISTRIES.md",
+      "STATUS_01_EXECUTABLE_SPINE_AND_SOURCE_CANDIDATES.md",
+      "STATUS_02_CHRONICLE_RECEIPTS_AND_MANIFESTS.md",
+      "STATUS_03_HARDWARE_AND_INTERLOCKS.md",
+      "STATUS_04_FORMAL_AND_THEORETICAL_ARCHITECTURE.md",
+      "STATUS_05_DMSI_SYMMIND_LINEAGE.md",
+      "STATUS_06_EXTERNAL_AI_RESEARCH_REFERENCES.md",
+      "STATUS_07_GOVERNANCE_AND_DEPLOYMENT.md",
+      "STATUS_08_ENGINEERING_SOPs.md",
+      "STATUS_09_SYMBOLIC_ORIENTATION_ARCHIVE.md",
+      "STATUS_10_BACKGROUND_REFERENCE.md"
+    ],
+    "code_candidates": [
+      "tests/test_insight_generation_service.ts",
+      "tests/test_observability_kernel_generates_insights.ts",
+      "src/insights/insightUpdaterService.ts"
+    ],
+    "text_assets": [
+      "LinkedIn/Threads 150-word WEAVER-LUMEN v9.0 post",
+      "AGI/ASI contribution essay — 8 sections on Intelligence ≠ Authority"
+    ]
+  },
   "master_invariants": [
     "CAPABILITY ≠ AUTHORITY",
     "NO RECEIPT = NO PROMOTION",
@@ -75,5 +112,5 @@
   "verification_expectation": {
     "certificate_hash_sha256": "33f78bde8ba348bd24d291e8b871684e85f83a2687dae393a3a86079acdfe9f5"
   },
-  "status": "updated"
+  "status": "updated_with_keep_list"
 }
