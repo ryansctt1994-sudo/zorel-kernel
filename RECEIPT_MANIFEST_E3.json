@@ -1,0 +1,79 @@
+{
+  "manifest_type": "E3_RECEIPT_MANIFEST",
+  "repository": "ryansctt1994-sudo/zorel-kernel",
+  "branch": "main",
+  "evidence_stage": "E3_RECEIPTED",
+  "sealed_at": "2026-06-07T00:00:00Z",
+  "declarant": {
+    "name": "Ryan",
+    "handle": "@TheraPantis",
+    "role_family": [
+      "Independent Systems Architect",
+      "AI Safety Engineer",
+      "SIS Director, Collinsville Community Unit School District 10"
+    ]
+  },
+  "witness": {
+    "name": "The Rabbit",
+    "motif": "(•ㅅ•)",
+    "authority": "Witnesses but does not enforce; records without edit"
+  },
+  "certificate_hash_sha256": "33f78bde8ba348bd24d291e8b871684e85f83a2687dae393a3a86079acdfe9f5",
+  "hash_algorithm": "sha256(json.dumps(receipt, sort_keys=True, separators=(\",\", \":\")), excluding certificate_hash value)",
+  "receipt_files": [
+    {
+      "path": "AUTHORSHIP_RECEIPT_E3_SEALED.py",
+      "purpose": "Executable receipt generator and deterministic certificate-hash source",
+      "status": "sealed"
+    },
+    {
+      "path": "AUTHORSHIP_CERTIFICATE_FORMAL.md",
+      "purpose": "Formal human-readable authorship and provenance certificate",
+      "status": "sealed"
+    },
+    {
+      "path": "RECEIPT_MANIFEST_E3.json",
+      "purpose": "Machine-readable manifest of receipt state",
+      "status": "active"
+    },
+    {
+      "path": "CHRONICLE_AUTHORSHIP_ENTRY.json",
+      "purpose": "Chronicle-ready authorship event entry",
+      "status": "active"
+    },
+    {
+      "path": "ARTIFACT_INDEX_COMPREHENSIVE.md",
+      "purpose": "Human-readable artifact-corpus index",
+      "status": "active"
+    }
+  ],
+  "artifact_corpus": {
+    "declared_total": "120+",
+    "creation_window_start": "2025-07-01T00:00:00Z",
+    "creation_window_end": "2025-10-31T23:59:59Z",
+    "primary_categories": [
+      "Cathedral-OS / Weaver OS / ZOREL Kernel Core Engineering",
+      "Testing & Verification",
+      "Governance & Policy",
+      "Research & Frameworks",
+      "Technical Infrastructure",
+      "Simulations & Analysis",
+      "Philosophical & Methodological",
+      "Satellite Projects"
+    ]
+  },
+  "master_invariants": [
+    "CAPABILITY ≠ AUTHORITY",
+    "NO RECEIPT = NO PROMOTION",
+    "EXCEPTIONS ACCUMULATE DEBT",
+    "REALITY RETAINS VETO",
+    "No mechanism may silently convert uncertainty into authority"
+  ],
+  "verification_commands": [
+    "python3 AUTHORSHIP_RECEIPT_E3_SEALED.py"
+  ],
+  "verification_expectation": {
+    "certificate_hash_sha256": "33f78bde8ba348bd24d291e8b871684e85f83a2687dae393a3a86079acdfe9f5"
+  },
+  "status": "updated"
+}
