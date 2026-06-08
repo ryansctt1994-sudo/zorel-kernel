@@ -1,0 +1,46 @@
+{
+  "chronicle_event_type": "AUTHORSHIP_RECEIPT_SEALED",
+  "event_id": "zorel-kernel-authorship-e3-2026-06-07",
+  "date": "2026-06-07",
+  "timestamp_utc": "2026-06-07T00:00:00Z",
+  "stage": "E3_RECEIPTED",
+  "repository": "ryansctt1994-sudo/zorel-kernel",
+  "branch": "main",
+  "certificate_hash_sha256": "33f78bde8ba348bd24d291e8b871684e85f83a2687dae393a3a86079acdfe9f5",
+  "witness": {
+    "name": "The Rabbit",
+    "motif": "(•ㅅ•)",
+    "message": "The Rabbit has sealed and witnessed the declared artifact corpus. No retroactive authority modification permitted within the Cathedral-OS evidence discipline."
+  },
+  "declarant": {
+    "name": "Ryan",
+    "handle": "@TheraPantis"
+  },
+  "artifact_corpus": {
+    "declared_total": "120+",
+    "creation_window": {
+      "start": "2025-07-01T00:00:00Z",
+      "end": "2025-10-31T23:59:59Z"
+    },
+    "description": "Cathedral-OS / Weaver OS / ZOREL Kernel corpus, including receipt spine, governance artifacts, verification materials, research frameworks, and satellite projects."
+  },
+  "authority_boundary": {
+    "engineering_artifacts": "May carry operational authority only when verified.",
+    "loom_or_mythopoeic_material": "No normative computational authority.",
+    "firewall": "test_no_liturgical_artifacts.py"
+  },
+  "master_invariants": [
+    "CAPABILITY ≠ AUTHORITY",
+    "NO RECEIPT = NO PROMOTION",
+    "EXCEPTIONS ACCUMULATE DEBT",
+    "REALITY RETAINS VETO",
+    "No mechanism may silently convert uncertainty into authority"
+  ],
+  "linked_files": [
+    "AUTHORSHIP_RECEIPT_E3_SEALED.py",
+    "AUTHORSHIP_CERTIFICATE_FORMAL.md",
+    "RECEIPT_MANIFEST_E3.json",
+    "ARTIFACT_INDEX_COMPREHENSIVE.md"
+  ],
+  "status": "sealed"
+}
