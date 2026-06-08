@@ -8,7 +8,7 @@ This repository contains the ZOREL / Cathedral-OS kernel materials and the seale
 
 `E3_RECEIPTED`
 
-The current receipt package records authorship intent, artifact-corpus metadata, foundation-file roles, and the Forge/Loom boundary. It is designed as provenance evidence: repository history, deterministic receipt hash, formal certificate, and Chronicle-ready manifest.
+The current receipt package records authorship intent, artifact-corpus metadata, foundation-file roles, and the Forge/Loom boundary. It is designed as provenance evidence: repository history, deterministic receipt hash, formal certificate, Chronicle-ready manifest, artifact index, and consolidated keep-list.
 
 ## Sealed Receipt Package
 
@@ -19,6 +19,7 @@ The current receipt package records authorship intent, artifact-corpus metadata,
 | `RECEIPT_MANIFEST_E3.json` | Machine-readable manifest containing the stable certificate hash and repository metadata | Active |
 | `CHRONICLE_AUTHORSHIP_ENTRY.json` | Chronicle-ready entry for the authorship receipt | Active |
 | `ARTIFACT_INDEX_COMPREHENSIVE.md` | Human-readable index of the described artifact corpus and categories | Active |
+| `KEEP_LIST.md` | Consolidated preservation map from the current chat thread | Active |
 
 ## Stable Certificate Hash
 
@@ -46,7 +47,8 @@ Then compare the hash against:
 
 1. `RECEIPT_MANIFEST_E3.json`
 2. `CHRONICLE_AUTHORSHIP_ENTRY.json`
-3. the GitHub commit history for this repository
+3. `KEEP_LIST.md`
+4. the GitHub commit history for this repository
 
 ## Master Operating Invariants
 
