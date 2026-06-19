@@ -1,1 +1,2 @@
-flask
+# Cathedral OS has no required third-party runtime dependencies at this scaffold stage.
+# Development/test dependency is declared in pyproject.toml: pytest>=8.0
