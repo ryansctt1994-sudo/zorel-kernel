@@ -1,73 +1,101 @@
-# ZOREL-Λ Kernel — Lawful AI Architecture
+# Cathedral OS
 
-Structural Sovereignty Prototype │ `RECKONING_ACTIVE` │ `Φ_g INCREASING`
+Cathedral OS is a governed execution architecture for AI systems.
 
-This repository contains the ZOREL / Cathedral-OS kernel materials and the sealed E3 authorship receipt package for Ryan (@TheraPantis).
+Its core principle is simple:
 
-## Current Evidence Status
+> Capability is not authority.
 
-`E3_RECEIPTED`
+Cathedral separates generation from execution through admissibility checks, typed actions, witness records, replay verification, and authority boundaries.
 
-The current receipt package records authorship intent, artifact-corpus metadata, foundation-file roles, and the Forge/Loom boundary. It is designed as provenance evidence: repository history, deterministic receipt hash, formal certificate, Chronicle-ready manifest, artifact index, and consolidated keep-list.
+The goal is not faster automation.  
+The goal is safer, auditable, replay-verifiable execution.
 
-## Sealed Receipt Package
+**Tagline:** Governed execution for systems where being wrong is expensive.
 
-| File | Purpose | Status |
-|---|---|---|
-| `AUTHORSHIP_RECEIPT_E3_SEALED.py` | Executable receipt generator; emits human-readable certificate and machine-readable JSON | Sealed |
-| `AUTHORSHIP_CERTIFICATE_FORMAL.md` | Formal Markdown authorship and provenance declaration | Sealed |
-| `RECEIPT_MANIFEST_E3.json` | Machine-readable manifest containing the stable certificate hash and repository metadata | Active |
-| `CHRONICLE_AUTHORSHIP_ENTRY.json` | Chronicle-ready entry for the authorship receipt | Active |
-| `ARTIFACT_INDEX_COMPREHENSIVE.md` | Human-readable index of the described artifact corpus and categories | Active |
-| `KEEP_LIST.md` | Consolidated preservation map from the current chat thread | Active |
+## Status
 
-## Stable Certificate Hash
+This repository is an early, evidence-first scaffold. It defines the package shape, core invariants, minimal executable primitives, reproduction scripts, and tests required to move from concept to independently reviewable implementation.
+
+Current evidence level: **E1/E2 scaffold**
+
+This repository does not claim production assurance, formal verification, independent audit, or operational safety certification. Promotion requires receipts, tests, replay evidence, and witness review.
+
+## Repository layout
 
 ```text
-33f78bde8ba348bd24d291e8b871684e85f83a2687dae393a3a86079acdfe9f5
+cathedral-os/
+├── README.md
+├── LICENSE
+├── CONTRIBUTING.md
+├── SECURITY.md
+├── CODE_OF_CONDUCT.md
+├── requirements.txt
+├── pyproject.toml
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── INVARIANTS.md
+│   ├── EVIDENCE_LADDER.md
+│   ├── WITNESS_PROTOCOL.md
+│   └── ROADMAP.md
+├── src/
+│   └── cathedral/
+│       ├── __init__.py
+│       ├── admissibility/
+│       ├── actionops/
+│       ├── witness/
+│       ├── replay/
+│       └── authority/
+├── tests/
+│   ├── test_admissibility.py
+│   ├── test_actionops.py
+│   ├── test_replay.py
+│   └── test_witness.py
+├── examples/
+│   └── demo_actionop_flow.py
+├── receipts/
+│   └── README.md
+└── scripts/
+    ├── run_reproduce.sh
+    └── verify_package.sh
 ```
 
-This hash is produced by `AUTHORSHIP_RECEIPT_E3_SEALED.py` using a deterministic sealed timestamp of `2026-06-07T00:00:00Z`.
-
-## Verification
-
-Run:
+## Install
 
 ```bash
-python3 AUTHORSHIP_RECEIPT_E3_SEALED.py
+python -m venv .venv
+. .venv/bin/activate
+pip install -e .[dev]
 ```
 
-Expected certificate hash:
+## Reproduce
+
+```bash
+bash scripts/run_reproduce.sh
+```
+
+Expected result:
 
 ```text
-33f78bde8ba348bd24d291e8b871684e85f83a2687dae393a3a86079acdfe9f5
+pytest passes
+package metadata imports
+example action operation emits a replay-verifiable receipt
 ```
 
-Then compare the hash against:
+## Core concepts
 
-1. `RECEIPT_MANIFEST_E3.json`
-2. `CHRONICLE_AUTHORSHIP_ENTRY.json`
-3. `KEEP_LIST.md`
-4. the GitHub commit history for this repository
+Cathedral OS treats an AI action as inadmissible until the system can show:
 
-## Master Operating Invariants
+1. the requested operation is typed;
+2. the authority boundary permits it;
+3. the admissibility check passes;
+4. the action record is witnessed;
+5. the resulting receipt can be replayed or independently inspected.
 
-```text
-CAPABILITY ≠ AUTHORITY
-NO RECEIPT = NO PROMOTION
-EXCEPTIONS ACCUMULATE DEBT
-REALITY RETAINS VETO
-No mechanism may silently convert uncertainty into authority
-```
+## Non-goals
 
-## Forge / Loom Boundary
+Cathedral OS is not a chatbot framework, agent personality layer, prompt library, or mythology repository. Narrative history belongs outside the main execution path. The main repository is for implementation, tests, documentation, receipts, and reproducibility.
 
-Engineering artifacts may carry operational authority only when verified. Mythopoeic, symbolic, narrative, or design-philosophy material may guide interpretation but carries no normative computational authority.
+## License
 
-The intended enforcement point is `test_no_liturgical_artifacts.py`.
-
-## Live Endpoint
-
-```text
-GET https://<your-deploy>/metrics
-```
+MIT.
