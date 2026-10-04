@@ -1,12 +1,20 @@
 # ZOREL-Λ Kernel — Lawful AI Architecture
 
-Structural Sovereignty Prototype │ `RECKONING_ACTIVE` │ `Φ_g INCREASING`
+Structural Sovereignty Prototype
 
-This repository contains the ZOREL / Cathedral-OS kernel materials and the sealed E3 authorship receipt package for Ryan (@TheraPantis).
+> **Evidence terminology note:** this repository's historical `E3_RECEIPTED` label names an authorship/provenance receipt package. It is **not** E3 independent reproduction under the broader Weaver portfolio evidence ladder and grants no operational authority.
+
+This repository contains ZOREL / Cathedral-OS provenance materials and a deterministic authorship receipt package. The receipt records provenance claims; it does not certify the correctness, safety, or deployment readiness of the broader system.
 
 ## Current Evidence Status
 
-`E3_RECEIPTED`
+```text
+AUTHORSHIP_PROVENANCE_RECEIPT
+LEGACY_LABEL: E3_RECEIPTED
+INDEPENDENT_REPRODUCTION: NOT_ESTABLISHED
+RUNTIME_CORRECTNESS: NOT_ESTABLISHED_BY_THIS_RECEIPT
+OPERATIONAL_AUTHORITY: NONE
+```
 
 The current receipt package records authorship intent, artifact-corpus metadata, foundation-file roles, and the Forge/Loom boundary. It is designed as provenance evidence: repository history, deterministic receipt hash, formal certificate, Chronicle-ready manifest, artifact index, and consolidated keep-list.
 
