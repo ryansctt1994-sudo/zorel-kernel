@@ -74,8 +74,12 @@ Engineering artifacts may carry operational authority only when verified. Mythop
 
 The intended enforcement point is `test_no_liturgical_artifacts.py`.
 
-## Live Endpoint
+## Integration placeholder
+
+The repository does not establish a live deployed service. If this kernel is later embedded in a service, a metrics surface could use a route such as:
 
 ```text
 GET https://<your-deploy>/metrics
 ```
+
+Treat that route as an integration example, not evidence of an active endpoint.
