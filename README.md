@@ -58,6 +58,15 @@ Then compare the hash against:
 3. `KEEP_LIST.md`
 4. the GitHub commit history for this repository
 
+Steps 1–3 are automated as golden-hash tests, which CI runs on Python 3.10–3.13:
+
+```bash
+python -m pip install "pytest>=8,<9"
+python -m pytest -q tests
+```
+
+The tests check that the hash reproduces, that it doesn't depend on `PYTHONHASHSEED`, that any field edit changes it, and that every document quoting it quotes the same value. They confirm the receipt bytes reproduce. They are not independent reproduction.
+
 ## Master Operating Invariants
 
 ```text
