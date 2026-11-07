@@ -1,5 +1,6 @@
 # ZOREL-Λ Kernel – First Verifiable Commit
 # Date: 2025-12-12
+# STATUS holds fixed literals, not measurements.
 
 STATUS = {
     "mode": "RECKONING_ACTIVE",

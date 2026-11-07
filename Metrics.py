@@ -1,4 +1,5 @@
-# ZOREL-Λ Metrics Endpoint – Verifiable Status Reporter
+# ZOREL-Λ Metrics Endpoint – placeholder status reporter
+# The values below are fixed literals, not measurements. Nothing here is verified.
 from flask import Flask  # Placeholder for future API
 
 app = Flask(__name__)

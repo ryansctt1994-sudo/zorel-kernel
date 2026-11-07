@@ -67,6 +67,16 @@ python -m pytest -q tests
 
 The tests check that the hash reproduces, that it doesn't depend on `PYTHONHASHSEED`, that any field edit changes it, and that every document quoting it quotes the same value. They confirm the receipt bytes reproduce. They are not independent reproduction.
 
+## What the sealed receipt does not establish
+
+The certificate hash covers the receipt's text exactly as written. Some of that text is a placeholder or a declaration that nothing in this repository checks:
+
+- **File checksums are placeholders.** All seven `foundation_files` entries carry `checksum_placeholder: "[SHA256 to be filled from repo]"`. The sealed hash binds those placeholder strings, not the contents of any file.
+- **The foundation files are not in this repository.** `receipt.py`, `chronicle.py`, `governance_debt.py`, `evidence_ladder.py`, `constitution_loader.py`, `test_no_liturgical_artifacts.py` and `negative_invariants.yaml` are described, with stage labels such as `Frozen/Verified`, but none of them is here. The stage labels are declarations, not results.
+- **The witness is a motif, not an independent party.** "The Rabbit" (•ㅅ•) is part of the declarant's own record, so the receipt is a self-attestation.
+
+Filling in real checksums would change the certificate hash. That makes it a new receipt with a new seal and an owner decision, not an edit to this one. The sealed receipt is left unchanged.
+
 ## Master Operating Invariants
 
 ```text
@@ -81,7 +91,7 @@ No mechanism may silently convert uncertainty into authority
 
 Engineering artifacts may carry operational authority only when verified. Mythopoeic, symbolic, narrative, or design-philosophy material may guide interpretation but carries no normative computational authority.
 
-The intended enforcement point is `test_no_liturgical_artifacts.py`.
+The intended enforcement point is `test_no_liturgical_artifacts.py`. That test is not in this repository; an implementation exists in Weaver--Cathedral- (`tests/test_no_liturgical_artifacts.py`), and nothing here runs it.
 
 ## Integration placeholder
 
@@ -91,4 +101,4 @@ The repository does not establish a live deployed service. If this kernel is lat
 GET https://<your-deploy>/metrics
 ```
 
-Treat that route as an integration example, not evidence of an active endpoint.
+Treat that route as an integration example, not evidence of an active endpoint. `Metrics.py` and `Kernel_status.py` return fixed literals (`RECKONING_ACTIVE`, `INCREASING`, `commit_hash: "live"`); nothing in them is measured.
