@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "waivers": [
+    {
+      "term": "AGI",
+      "file": "ARTIFACT_INDEX_COMPREHENSIVE.md",
+      "contains": "AGI evaluation frameworks",
+      "reason": "Not a claim: topic label in the artifact-category list (research on AGI evaluation), not a statement that the system is or achieves AGI."
+    },
+    {
+      "term": "AGI",
+      "file": "AUTHORSHIP_CERTIFICATE_FORMAL.md",
+      "contains": "AGI evaluation",
+      "reason": "Not a claim: topic label in the certificate's category lists (lines 73 and 173)."
+    },
+    {
+      "term": "AGI",
+      "file": "KEEP_LIST.md",
+      "contains": "AGI/ASI contribution essay",
+      "reason": "Not a claim: title of an essay the keep-list already labels JUSTIFICATION_ONLY."
+    },
+    {
+      "term": "ASI",
+      "file": "KEEP_LIST.md",
+      "contains": "AGI/ASI contribution essay",
+      "reason": "Not a claim: title of an essay the keep-list already labels JUSTIFICATION_ONLY."
+    },
+    {
+      "term": "AGI",
+      "file": "RECEIPT_MANIFEST_E3.json",
+      "contains": "AGI/ASI contribution essay",
+      "reason": "Not a claim: the same essay title, recorded in the receipt manifest's keep-list."
+    },
+    {
+      "term": "ASI",
+      "file": "RECEIPT_MANIFEST_E3.json",
+      "contains": "AGI/ASI contribution essay",
+      "reason": "Not a claim: the same essay title, recorded in the receipt manifest's keep-list."
+    }
+  ]
+}
