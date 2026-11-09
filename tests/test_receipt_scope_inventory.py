@@ -133,3 +133,22 @@ def test_receipt_declaration_calls_are_rejected_without_executing(isolated_recei
     with pytest.raises(ValueError, match="nonliteral"):
         build_inventory(isolated_receipt)
     assert not marker.exists()
+
+
+@pytest.mark.parametrize(
+    ("name", "expected_error"),
+    [
+        ("RECEIPT_MANIFEST_E3.json", "manifest"),
+        ("AUTHORSHIP_RECEIPT_E3_SEALED.py", "receipt source"),
+    ],
+)
+def test_primary_evidence_symlinks_outside_root_are_rejected(
+    isolated_receipt, tmp_path, name, expected_error
+):
+    target = isolated_receipt / name
+    target.unlink()
+    outside = tmp_path / ("external-" + name)
+    outside.write_text("{}")
+    target.symlink_to(outside)
+    with pytest.raises(ValueError, match=expected_error):
+        build_inventory(isolated_receipt)
