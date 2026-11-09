@@ -30,7 +30,7 @@ def test_current_receipt_is_consistent_but_has_no_operational_authority():
     result = build_inventory(ROOT)
     assert result["certificate_hash_matches"]
     assert result["receipt_files_all_present"]
-    assert result["valid_receipt_package"]
+    assert result["receipt_metadata_check_passed"]
     assert len(result["certificate_hash_declared"]) == 64
     assert result["independent_reproduction"] is False
     assert result["runtime_correctness"] == "NOT_ESTABLISHED"
@@ -61,7 +61,7 @@ def test_manifest_hash_mismatch_is_detected(isolated_receipt):
     path.write_text(json.dumps(data))
     result = build_inventory(isolated_receipt)
     assert result["certificate_hash_matches"] is False
-    assert result["valid_receipt_package"] is False
+    assert result["receipt_metadata_check_passed"] is False
 
 
 def test_missing_receipt_artifact_is_detected(isolated_receipt):
@@ -69,5 +69,27 @@ def test_missing_receipt_artifact_is_detected(isolated_receipt):
     path.unlink()
     result = build_inventory(isolated_receipt)
     assert not result["receipt_files_all_present"]
-    assert not result["valid_receipt_package"]
+    assert not result["receipt_metadata_check_passed"]
     assert result["receipt_files"]["ARTIFACT_INDEX_COMPREHENSIVE.md"]["sha256"] is None
+
+
+def test_inventory_never_claims_authenticated_receipt_content(isolated_receipt):
+    # A changed file still exists; without independent signed expected
+    # digests, the tool cannot establish its content integrity.
+    target = isolated_receipt / "ARTIFACT_INDEX_COMPREHENSIVE.md"
+    target.write_text(target.read_text() + "\nUnverified modification\n")
+    result = build_inventory(isolated_receipt)
+    assert result["receipt_metadata_check_passed"]
+    assert result["receipt_contents_authenticated"] is False
+    assert result["independent_reproduction"] is False
+
+
+def test_symlink_to_external_receipt_file_is_rejected(isolated_receipt, tmp_path):
+    target = isolated_receipt / "KEEP_LIST.md"
+    target.unlink()
+    outside = tmp_path / "outside_receipt.txt"
+    outside.write_text("external bytes")
+    target.symlink_to(outside)
+    result = build_inventory(isolated_receipt)
+    assert result["receipt_files"]["KEEP_LIST.md"]["present"] is False
+    assert result["receipt_metadata_check_passed"] is False
