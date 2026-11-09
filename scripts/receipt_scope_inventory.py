@@ -103,7 +103,10 @@ def _declared_certificate_digest(declared: dict) -> str:
 
 def build_inventory(root: Path) -> dict:
     root = root.resolve()
-    manifest = json.loads((root / "RECEIPT_MANIFEST_E3.json").read_text(encoding="utf-8"))
+    manifest_path = _safe_file(root, "RECEIPT_MANIFEST_E3.json")
+    if manifest_path is None or not manifest_path.is_file():
+        raise ValueError("Receipt manifest is missing or unsafe to inspect.")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
 
     generator_path = _safe_file(root, "AUTHORSHIP_RECEIPT_E3_SEALED.py")
     if generator_path is None or not generator_path.is_file():
