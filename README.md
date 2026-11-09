@@ -29,7 +29,7 @@ are present and the generator's hash matches the manifest's declared hash.
 independent signed per-file digest baseline. A changed file can leave that
 metadata check passing; the local inventory is not a verification authority.
 The CLI exits nonzero for missing files or a mismatch in self-reported
-certificate hashes. The sealed receipt and original manifest remain unchanged.
+certificate hashes. It **parses only frozen literal receipt declarations using Python's AST without importing or executing the checked-out generator**, and refuses unexpected expressions in those declarations. This removes code-execution authority from the inventory step; it does not authenticate unexamined code or prove that the generator function itself behaves correctly. The sealed receipt and original manifest remain unchanged.
 
 ## Sealed Receipt Package
 
