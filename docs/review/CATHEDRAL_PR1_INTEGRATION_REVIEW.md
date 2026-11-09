@@ -11,10 +11,17 @@ scaffold's README as a replacement for current receipt disclosures.
 - Separate offline runner PR #3: `c9ba16309196ec4ec4303cc7b023177f95ef11f4` (not included here)
 
 This trial is a new branch based on the **main** commit above. It contains
-the exact 24 source blobs that exist on PR #1 but not on that main commit.
+the 24 additive file paths from PR #1, of which **23 retain identical
+blob bytes**. The `docs/CONSOLIDATED_CODE_ARTIFACT_REGISTRY.md` source
+originally asserted "safe crossing"; the candidate changes this line to
+"Proposed thresholds and permission boundaries (not execution-tested)" after
+the original CI claim audit rejected the unsupported safety statement. This
+is a **review-candidate documentation clarification**, not an edit to PR #1
+or a `claims.json` waiver. The original exact bytes remain available on
+PR #1 at the SHA above.
+
 It is intentionally a single-parent snapshot for testing; no merge or
-rebase was performed on PR #1 or PR #3. The historical PR #1 branch remains
-the source of those new blobs.
+rebase was performed on PR #1 or PR #3.
 
 ## Reconciliation decisions used *only* in this trial
 
