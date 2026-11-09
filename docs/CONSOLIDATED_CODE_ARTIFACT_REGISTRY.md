@@ -66,7 +66,7 @@ No external witness -> no E3.5 / E4.
 | Operator | Role |
 |---|---|
 | The Chronicle | Provenance, custody, version history, memory |
-| The Guardian | Thresholds, boundaries, permissions, safe crossing |
+| The Guardian | Proposed thresholds and permission boundaries (not execution-tested) |
 | Aphooph | Destructive collapse of distinctions |
 | Harmonia | Preservation of necessary incompleteness |
 | The Empty Chair | Absent witness / future participant |
