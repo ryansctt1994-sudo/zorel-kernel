@@ -18,6 +18,19 @@ OPERATIONAL_AUTHORITY: NONE
 
 The current receipt package records authorship intent, artifact-corpus metadata, foundation-file roles, and the Forge/Loom boundary. It is designed as provenance evidence: repository history, deterministic receipt hash, formal certificate, Chronicle-ready manifest, artifact index, and consolidated keep-list.
 
+## Local Artifact Inventory (unsealed tooling)
+
+Run `python scripts/receipt_scope_inventory.py` to enumerate the current
+receipt files and their *observed* SHA-256 digests, check that self-reported
+certificate hashes agree, and expose missing foundation files. Its
+`receipt_metadata_check_passed` field means **only** that listed local files
+are present and the generator's hash matches the manifest's declared hash.
+`receipt_contents_authenticated` is always `false`: this inventory has no
+independent signed per-file digest baseline. A changed file can leave that
+metadata check passing; the local inventory is not a verification authority.
+The CLI exits nonzero for missing files or a mismatch in self-reported
+certificate hashes. It **parses only frozen literal receipt declarations using Python's AST without importing or executing the checked-out generator**, and refuses unexpected expressions in those declarations. This removes code-execution authority from the inventory step; it does not authenticate unexamined code or prove that the generator function itself behaves correctly. The sealed receipt and original manifest remain unchanged.
+
 ## Sealed Receipt Package
 
 | File | Purpose | Status |
