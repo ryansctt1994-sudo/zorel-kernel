@@ -4,7 +4,7 @@
 ZOREL main branch without changing either branch or accepting the old
 scaffold's README as a replacement for current receipt disclosures.
 
-## Immutable input references
+## Pinned input references
 
 - Current `main`: `be1e54bfa6b08f5212e2df08241239eaefe210b9`
 - Cathedral scaffold PR #1: `45a74580ff37135fdfb0f8e936e29fdef51ec6c7`
