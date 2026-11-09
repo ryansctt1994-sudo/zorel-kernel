@@ -93,3 +93,43 @@ def test_symlink_to_external_receipt_file_is_rejected(isolated_receipt, tmp_path
     result = build_inventory(isolated_receipt)
     assert result["receipt_files"]["KEEP_LIST.md"]["present"] is False
     assert result["receipt_metadata_check_passed"] is False
+
+
+def test_receipt_source_is_never_executed_during_inventory(isolated_receipt, tmp_path):
+    # An untrusted repository file can contain arbitrary Python. The
+    # inventory must parse the declarations without running the file.
+    receipt = isolated_receipt / "AUTHORSHIP_RECEIPT_E3_SEALED.py"
+    side_effect = tmp_path / "untrusted_generator_ran.txt"
+    receipt.write_text(
+        receipt.read_text() +
+        "\nfrom pathlib import Path\nPath(" + repr(str(side_effect)) +
+        ").write_text('UNSAFE_EXECUTION')\n"
+    )
+    result = build_inventory(isolated_receipt)
+    assert result["certificate_hash_matches"]
+    assert result["generator_executed"] is False
+    assert result["generator_declarations_parsed_statically"] is True
+    assert not side_effect.exists()
+
+
+def test_mutated_literal_receipt_declaration_breaks_hash_consistency(isolated_receipt):
+    receipt = isolated_receipt / "AUTHORSHIP_RECEIPT_E3_SEALED.py"
+    source = receipt.read_text()
+    assert '"total_artifacts": "120+"' in source
+    receipt.write_text(source.replace('"total_artifacts": "120+"', '"total_artifacts": "999+"'))
+    result = build_inventory(isolated_receipt)
+    assert result["certificate_hash_matches"] is False
+    assert result["receipt_metadata_check_passed"] is False
+
+
+def test_receipt_declaration_calls_are_rejected_without_executing(isolated_receipt, tmp_path):
+    receipt = isolated_receipt / "AUTHORSHIP_RECEIPT_E3_SEALED.py"
+    marker = tmp_path / "untrusted_expression_executed.txt"
+    original = 'SEALED_AT = "2026-06-07T00:00:00Z"'
+    source = receipt.read_text()
+    assert original in source
+    malicious = "SEALED_AT = __import__('pathlib').Path(" + repr(str(marker)) + ").write_text('unsafe')"
+    receipt.write_text(source.replace(original, malicious))
+    with pytest.raises(ValueError, match="nonliteral"):
+        build_inventory(isolated_receipt)
+    assert not marker.exists()
