@@ -23,7 +23,13 @@ def _safe_file(root: Path, value: str) -> Path | None:
     relative = Path(value)
     if relative.is_absolute() or ".." in relative.parts or not relative.parts:
         return None
-    return root / relative
+    candidate = root / relative
+    # Reject symlinked artifacts, including links through parent directories,
+    # and paths that escape the selected checkout.
+    resolved = candidate.resolve(strict=False)
+    if not resolved.is_relative_to(root) or resolved != candidate:
+        return None
+    return candidate
 
 
 def build_inventory(root: Path) -> dict:
@@ -60,7 +66,8 @@ def build_inventory(root: Path) -> dict:
             "independently_verified": False,
         }
 
-    complete = all(item["present"] for item in receipt_files.values())
+    complete = bool(receipt_files) and all(item["present"] for item in receipt_files.values())
+    metadata_check_passed = complete and declared == recomputed
     return {
         "scope": "local artifact inventory and receipt self-consistency only",
         "repository": manifest["repository"],
@@ -71,7 +78,11 @@ def build_inventory(root: Path) -> dict:
         "receipt_files_all_present": complete,
         "foundation_files": foundation,
         "foundation_files_missing": sorted(k for k, v in foundation.items() if not v["present"]),
-        "valid_receipt_package": bool(complete and declared == recomputed),
+        # Presence and agreement of self-reported metadata are NOT
+        # content authentication: the receipt has no independent signed
+        # per-file digest baseline and the generator is part of the checkout.
+        "receipt_metadata_check_passed": bool(metadata_check_passed),
+        "receipt_contents_authenticated": False,
         "independent_reproduction": False,
         "runtime_correctness": "NOT_ESTABLISHED",
         "operational_authority": "NONE",
@@ -84,7 +95,7 @@ def main() -> int:
     args = parser.parse_args()
     inventory = build_inventory(args.root)
     print(json.dumps(inventory, indent=2, sort_keys=True))
-    return 0 if inventory["valid_receipt_package"] else 1
+    return 0 if inventory["receipt_metadata_check_passed"] else 1
 
 
 if __name__ == "__main__":
