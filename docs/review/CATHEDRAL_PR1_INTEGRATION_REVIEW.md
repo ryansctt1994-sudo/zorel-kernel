@@ -13,9 +13,9 @@ scaffold's README as a replacement for current receipt disclosures.
 This trial is a new branch based on the **main** commit above. It contains
 the 24 additive file paths from PR #1, of which **23 retain identical
 blob bytes**. The `docs/CONSOLIDATED_CODE_ARTIFACT_REGISTRY.md` source
-originally asserted "safe crossing"; the candidate changes this line to
-"Proposed thresholds and permission boundaries (not execution-tested)" after
-the original CI claim audit rejected the unsupported safety statement. This
+used unsupported assurance wording; the candidate now describes those
+thresholds and permission boundaries as proposals without implying executed
+security checks. This was required by the original CI claim audit. This
 is a **review-candidate documentation clarification**, not an edit to PR #1
 or a `claims.json` waiver. The original exact bytes remain available on
 PR #1 at the SHA above.
