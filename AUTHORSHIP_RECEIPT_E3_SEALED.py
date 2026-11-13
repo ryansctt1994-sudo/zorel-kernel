@@ -19,6 +19,7 @@ SHA256 certificate hash over the JSON certificate body excluding the hash field.
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 from datetime import datetime, timezone
@@ -190,13 +191,17 @@ WITNESS_SEAL: Dict[str, str] = {
 
 
 def build_receipt() -> Dict[str, Any]:
-    """Build the complete receipt object and attach a deterministic SHA256 hash."""
+    """Build a detached snapshot with its deterministic SHA256 content hash.
+
+    Do not expose aliases to module-owned source declarations. A caller may
+    mutate its returned receipt, but must never rewrite the next build.
+    """
     receipt: Dict[str, Any] = {
-        "authorship_manifest": AUTHORSHIP_MANIFEST,
-        "foundation_files": FOUNDATION_FILES,
-        "master_invariants": MASTER_INVARIANTS,
-        "attestation": ATTESTATION,
-        "witness_seal": WITNESS_SEAL,
+        "authorship_manifest": copy.deepcopy(AUTHORSHIP_MANIFEST),
+        "foundation_files": copy.deepcopy(FOUNDATION_FILES),
+        "master_invariants": copy.deepcopy(MASTER_INVARIANTS),
+        "attestation": copy.deepcopy(ATTESTATION),
+        "witness_seal": copy.deepcopy(WITNESS_SEAL),
         "certificate_hash": None,
     }
     canonical = json.dumps(receipt, sort_keys=True, separators=(",", ":"))
