@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ZOREL source amendment record v1",
+  "description": "An auditable source-change annotation; not a signature, independent witness, or historical re-seal.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "schema_version",
+    "record_type",
+    "recorded_date_utc",
+    "repository",
+    "pull_request",
+    "record_status",
+    "source",
+    "historical_certificate",
+    "amendment",
+    "evidence",
+    "boundaries",
+    "review"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "minLength": 12
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "record_type": {
+      "const": "SOURCE_GENERATOR_AMENDMENT"
+    },
+    "recorded_date_utc": {
+      "type": "string",
+      "format": "date"
+    },
+    "repository": {
+      "const": "ryansctt1994-sudo/zorel-kernel"
+    },
+    "pull_request": {
+      "const": 11
+    },
+    "record_status": {
+      "enum": [
+        "CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+        "REVIEWED_WITHOUT_MERGE_AUTHORITY"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "baseline_main_commit",
+        "repair_commit",
+        "baseline_git_blob_sha1",
+        "repaired_git_blob_sha1"
+      ],
+      "properties": {
+        "path": {
+          "const": "AUTHORSHIP_RECEIPT_E3_SEALED.py"
+        },
+        "baseline_main_commit": {
+          "$ref": "#/$defs/gitsha"
+        },
+        "repair_commit": {
+          "$ref": "#/$defs/gitsha"
+        },
+        "baseline_git_blob_sha1": {
+          "$ref": "#/$defs/gitsha"
+        },
+        "repaired_git_blob_sha1": {
+          "$ref": "#/$defs/gitsha"
+        }
+      }
+    },
+    "historical_certificate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sha256",
+        "hash_role",
+        "certificate_content_changed",
+        "hash_algorithm_changed",
+        "legacy_label"
+      ],
+      "properties": {
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "hash_role": {
+          "const": "DETERMINISTIC_CONTENT_HASH_NOT_SIGNATURE"
+        },
+        "certificate_content_changed": {
+          "const": false
+        },
+        "hash_algorithm_changed": {
+          "const": false
+        },
+        "legacy_label": {
+          "const": "E3_RECEIPTED_NOT_INDEPENDENT_E3"
+        }
+      }
+    },
+    "amendment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "change_kind",
+        "reason",
+        "mechanism",
+        "isolated_roots",
+        "historical_source_declarations_modified",
+        "canonical_json_algorithm_modified",
+        "historical_reseal_performed"
+      ],
+      "properties": {
+        "change_kind": {
+          "const": "RETURNED_OBJECT_SNAPSHOT_ISOLATION"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 20
+        },
+        "mechanism": {
+          "type": "string",
+          "minLength": 20
+        },
+        "isolated_roots": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "enum": [
+              "AUTHORSHIP_MANIFEST",
+              "FOUNDATION_FILES",
+              "MASTER_INVARIANTS",
+              "ATTESTATION",
+              "WITNESS_SEAL"
+            ]
+          }
+        },
+        "historical_source_declarations_modified": {
+          "const": false
+        },
+        "canonical_json_algorithm_modified": {
+          "const": false
+        },
+        "historical_reseal_performed": {
+          "const": false
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "red_test_commit",
+        "red_ci_run",
+        "red_result",
+        "green_ci_run",
+        "green_result",
+        "green_python_versions",
+        "green_includes_claim_audit"
+      ],
+      "properties": {
+        "red_test_commit": {
+          "$ref": "#/$defs/gitsha"
+        },
+        "red_ci_run": {
+          "type": "string",
+          "pattern": "^https://github[.]com/ryansctt1994-sudo/zorel-kernel/actions/runs/[0-9]+$"
+        },
+        "red_result": {
+          "const": "2_REGRESSION_TESTS_FAILED_AS_EXPECTED"
+        },
+        "green_ci_run": {
+          "type": "string",
+          "pattern": "^https://github[.]com/ryansctt1994-sudo/zorel-kernel/actions/runs/[0-9]+$"
+        },
+        "green_result": {
+          "const": "FIVE_JOBS_SUCCEEDED"
+        },
+        "green_python_versions": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "enum": [
+              "3.10",
+              "3.11",
+              "3.12",
+              "3.13"
+            ]
+          }
+        },
+        "green_includes_claim_audit": {
+          "const": true
+        }
+      }
+    },
+    "boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "independent_witness",
+        "historical_resealing",
+        "external_custody",
+        "operational_authority",
+        "independent_reproduction",
+        "evidence_ladder_promotion",
+        "production_authorization"
+      ],
+      "properties": {
+        "independent_witness": {
+          "const": "NOT_ESTABLISHED"
+        },
+        "historical_resealing": {
+          "const": "NOT_PERFORMED"
+        },
+        "external_custody": {
+          "const": "NOT_ESTABLISHED"
+        },
+        "operational_authority": {
+          "const": "NONE"
+        },
+        "independent_reproduction": {
+          "const": "NOT_ESTABLISHED"
+        },
+        "evidence_ladder_promotion": {
+          "const": "NONE"
+        },
+        "production_authorization": {
+          "const": "PROHIBITED"
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_approval",
+        "merge_authorization"
+      ],
+      "properties": {
+        "human_approval": {
+          "const": "PENDING"
+        },
+        "merge_authorization": {
+          "const": "WITHHELD"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "gitsha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}
