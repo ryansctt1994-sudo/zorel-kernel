@@ -1,0 +1,65 @@
+{
+  "record_id": "ZOREL-SOURCE-AMENDMENT-PR11-2026-11-13",
+  "schema_version": 1,
+  "record_type": "SOURCE_GENERATOR_AMENDMENT",
+  "recorded_date_utc": "2026-11-13",
+  "repository": "ryansctt1994-sudo/zorel-kernel",
+  "pull_request": 11,
+  "record_status": "CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "source": {
+    "path": "AUTHORSHIP_RECEIPT_E3_SEALED.py",
+    "baseline_main_commit": "be1e54bfa6b08f5212e2df08241239eaefe210b9",
+    "repair_commit": "764b8c7b62fbb3b40a830e918caf98a2e3d35e2f",
+    "baseline_git_blob_sha1": "e17be5ee557ba9e5605cf3482134670e090ca94c",
+    "repaired_git_blob_sha1": "07f1f5f967a04a11feb856ab17fcdd3c37dbeea1"
+  },
+  "historical_certificate": {
+    "sha256": "33f78bde8ba348bd24d291e8b871684e85f83a2687dae393a3a86079acdfe9f5",
+    "hash_role": "DETERMINISTIC_CONTENT_HASH_NOT_SIGNATURE",
+    "certificate_content_changed": false,
+    "hash_algorithm_changed": false,
+    "legacy_label": "E3_RECEIPTED_NOT_INDEPENDENT_E3"
+  },
+  "amendment": {
+    "change_kind": "RETURNED_OBJECT_SNAPSHOT_ISOLATION",
+    "reason": "Return values from build_receipt previously aliased module-owned mutable declarations, allowing a caller to contaminate later generated receipts in the same process.",
+    "mechanism": "Deep-copy five nested module declarations into each newly generated receipt before computing its existing canonical JSON SHA-256 content hash.",
+    "isolated_roots": [
+      "AUTHORSHIP_MANIFEST",
+      "FOUNDATION_FILES",
+      "MASTER_INVARIANTS",
+      "ATTESTATION",
+      "WITNESS_SEAL"
+    ],
+    "historical_source_declarations_modified": false,
+    "canonical_json_algorithm_modified": false,
+    "historical_reseal_performed": false
+  },
+  "evidence": {
+    "red_test_commit": "1614d4997ee46e76c0df9d3b52196acbbee0b89c",
+    "red_ci_run": "https://github.com/ryansctt1994-sudo/zorel-kernel/actions/runs/43359279091",
+    "red_result": "2_REGRESSION_TESTS_FAILED_AS_EXPECTED",
+    "green_ci_run": "https://github.com/ryansctt1994-sudo/zorel-kernel/actions/runs/43359372178",
+    "green_result": "FIVE_JOBS_SUCCEEDED",
+    "green_python_versions": [
+      "3.10",
+      "3.11",
+      "3.12",
+      "3.13"
+    ],
+    "green_includes_claim_audit": true
+  },
+  "boundaries": {
+    "independent_witness": "NOT_ESTABLISHED",
+    "historical_resealing": "NOT_PERFORMED",
+    "external_custody": "NOT_ESTABLISHED",
+    "operational_authority": "NONE",
+    "independent_reproduction": "NOT_ESTABLISHED",
+    "evidence_ladder_promotion": "NONE",
+    "production_authorization": "PROHIBITED"
+  },
+  "review": {
+    "human_approval": "PENDING",
+    "merge_authorization": "WITHHELD"
+  }
+}
